@@ -1,0 +1,1166 @@
+/*ESTILOS GENERALES PARA EL HTML*/
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html{
+    scroll-padding: 70px;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: "Space Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    background-color: #dddedd;
+}
+
+*::selection {
+    background-color: #272527;
+    color: rgb(82, 141, 50);
+}
+ 
+*::-moz-selection {
+    background-color:#272527;
+    color: rgb(82, 141, 50);
+}
+
+/*ESTILOS HEADER Y NAV*/
+header {
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 75px;
+    padding: 30px;
+    transition: .3s;
+    z-index: 1;
+
+}
+
+#modalOverlay {
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+}
+
+ul {
+    display: flex;
+    list-style: none;
+}
+
+a {
+    cursor: pointer;
+    color: black;
+    text-decoration: none;
+}
+i{
+    cursor: pointer;
+}
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+    cursor: pointer;
+}
+
+.logo span {
+    font-size: 20px;
+}
+
+.logo img {
+    margin-left: 5px;
+    margin-bottom: 2px;
+    width: 20px;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-item {
+    margin: 15px;
+}
+
+.navbar-item a {
+    font-weight: bold;
+    font-size: 16px;
+    color: black;
+    text-decoration: none;
+    gap: 5px;
+    position: relative
+}
+
+.navbar-item a:before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: rgb(82, 141, 50);
+    transition: width 0.2s ease;
+}
+
+.navbar-item a:hover::before {
+    width: 100%;
+}
+
+.navbar-icon {
+    display: none;
+}
+
+.bi-list {
+    font-size: 25px;
+    cursor: pointer;
+    color: rgb(82, 141, 50);
+    transition: .3s;
+}
+
+.cerrar-menu {
+    color: white;
+    cursor: pointer;
+    display: none;
+    font-size: 25px;
+    position: absolute;
+    top: 1.2rem;
+    right: 1rem;
+}
+
+.cerrar-modal {
+    position: absolute;
+    font-size: 25px;
+    margin-left: 5px;
+    margin-top: 5px;
+    color: rgb(82, 141, 50);
+}
+
+
+.bi-list:hover,
+.cerrar-menu:hover,.cerrar-modal:hover, .infoLibro > .cerrar-modal:hover {
+    color: rgb(255, 0, 43);
+}
+/*ESTILOS BANNER Y TABLAS*/
+.banner {
+    display: flex;
+    background-image: url("../images/banner.jpg");
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 100px;
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.banner-text {
+    margin-bottom: 200px;
+}
+
+.banner-text h1 {
+    text-align: start;
+    font-size: 45px;
+    color: rgb(82, 141, 50);
+}
+
+.banner-text h1 strong {
+    color: black;
+}
+
+.banner-text p {
+    font-size: 20px;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.articulo {
+    display: flex;
+    width: 100%;
+    background-color: white;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    gap: 10px;
+}
+
+.articulo h2 {
+    margin-bottom: 100px;
+}
+.banner-text p{
+    margin-bottom: 20px;
+}
+.banner-text a{
+    background-color: rgb(82, 141, 50);
+    color: white;
+    text-align: center;
+    padding: 5px;
+    width: max-content;
+    top: 15px;
+    font-size: 15px;
+    border-radius: 5px;
+    transition: .3s;
+    
+}
+.title-pages {
+    margin-bottom: 20px;
+}
+.container-libros,.container-tablas,.container-reportes{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    min-height: 100vh;
+}
+.container-tablas{
+    background-color: #c7c8c7;
+}
+.container-reportes{
+    background-color: white;
+    flex-direction: column;
+    padding-bottom: 100px;
+}
+
+#editoriales{
+    background-color: #dddedd;
+}
+
+.tabla-libros,.tablasAutorEditorial{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+}
+/*Estilos para las tablas*/
+.table {
+    padding: 0;
+    text-align: center;
+    border-collapse: collapse;
+    margin: 0;
+    border: 2px solid rgb(82, 141, 50);
+}
+/*Tabla libros*/
+#tablaLibros{
+    width: 850px;
+}
+/*Tabla autores*/
+#tablaAutores{
+    width: 850px;
+}
+#tablaEditoriales{
+    width: 650px;
+}
+#tablaAutores thead th:nth-child(3),
+#tablaAutores tbody td:nth-child(3){
+    text-align: start;
+}
+
+#tablaLibros thead th:nth-child(5),
+#tablaLibros thead th:nth-child(4),
+#tablaAutores thead th:nth-child(4),
+#tablaAutores thead th:nth-child(5){
+    text-align: center;
+}
+
+#tablaLibros tbody td:nth-child(4),
+#tablaLibros tbody td:nth-child(5),
+#tablaAutores tbody td:nth-child(4),
+#tablaAutores tbody td:nth-child(5){
+    text-align: center;
+}
+/*Tabla editoriales.*/
+
+#tablaEditoriales tbody td:nth-child(3),
+#tablaEditoriales thead th:nth-child(3){
+    text-align: center;
+}
+.container-cards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    width: 100%;
+    flex-wrap: wrap;
+    height: max-content;
+}
+
+
+.card {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 5px;
+    gap: 10px;
+    width: 35%;
+    max-width: 350px;
+    height: 300px;
+    margin: 10px;
+    border: 2px solid rgb(82, 141, 50);
+    background-color: white;
+    object-fit: cover;
+    position: relative;
+}
+
+
+.card .iconos {
+    color: rgb(82, 141, 50);
+    font-size: 45px;
+    cursor: auto;
+}
+
+.card .btnInformes {
+    position: absolute;
+    bottom: 40px;
+    font-size: 15px;
+    padding: 10px;
+    width: max-content;
+    background-color: rgb(82, 141, 50);
+    color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 7px;
+    transition: .3s;
+}
+
+.card .btnInformes:hover, #btnModal:hover, .borrarLibro a:hover {
+    color: rgb(82, 141, 50);
+    border-color: rgb(82, 141, 50);
+    background-color: white;
+
+}
+.card-title {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: flex;
+    height: 50px;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    bottom: 0;
+    background-color: rgb(82, 141, 50);
+}
+
+.home {
+    position: fixed;
+    opacity: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 75%;
+    z-index: 600;
+}
+
+.modalAutor,.modalEditorial{
+    position: fixed;
+    opacity: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border-radius: 40px;
+    width: 100%;
+    z-index: 600;
+}
+.modalAutor-text {
+    width: 370px;
+    border-radius: 15px;
+    padding: 10px;
+    background-color: white;
+    text-align: center;
+    color: black;
+}
+.modalAutor-text a{
+    position: absolute;
+    top:20px;
+    margin-left: -180px;
+}
+.home-text {
+    width: 50%;
+    text-align: start;
+    background: white;
+    color: black;
+}
+
+.modalAutor-text h3{
+    margin-bottom: 15px;
+    color: rgb(82, 141, 50);
+    text-decoration: none;
+    font-size: 20px;
+}
+.home-text h3 {
+    margin-top: 15px;
+    font-size: 22px;
+    text-align: center;
+    padding: 5px;
+    margin-bottom: 15px;
+    color: rgb(82, 141, 50);
+}
+
+.form {
+    display: flex;
+    text-align: start;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-group {
+    width: 85%;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.form-group label {
+    text-align: start;
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: rgb(82, 141, 50);
+}
+
+.form-group input {
+    width: 100%;
+    text-align: start;
+    height: 30px;
+    outline-style: none;
+    background-color: none;
+    border: none;
+    background-color: white;
+    border-bottom: 1px solid rgb(82, 141, 50);
+
+}
+
+.form-group.flex-group {
+    display: flex;
+    gap: 15px;
+    justify-content: space-between;
+    flex-direction: row;
+}
+.form-group select {
+    min-width: 100%;
+    background-color: rgb(82, 141, 50);
+    color: white;
+    border-radius: 5px;
+}
+.home-img {
+    width: 40%;
+    display: flex;
+    align-items: center;
+    background-color: rgb(82, 141, 50);
+    object-fit: cover;
+}
+
+.home-img img {
+    width: 100%;
+
+}
+
+.btn-form {
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    border-style: none;
+    margin-top: 15px;
+    border: 1px solid rgb(82, 141, 50);
+    width: max-content;
+    font-size: 14px;
+    padding: 7px;
+    background-color: rgb(82, 141, 50);
+    color: white;
+    padding-bottom: 10px;
+    transition: .3s;
+    border-radius: 15px;
+}
+
+.btn-form:hover,.banner-text a:hover {
+    background-color: white;
+    color: rgb(82, 141, 50);
+}
+
+.table{
+    margin-top: 20px;
+    width: 70vw;
+    border-collapse: collapse;
+    text-align: center;
+    background-color: white;
+    color: rgb(82,141,50);
+}
+.table thead{
+    height: 30px;
+    color: white;
+    background-color: rgb(82,141, 50);
+}
+.table thead th:nth-child(1),th:nth-child(2),th:nth-child(3){
+    text-align: start;
+}
+.table td{
+    padding: 5px;
+    height: 30px;
+    border: 1px solid rgb(82,141, 50);;
+}
+.table tbody td:nth-child(1),td:nth-child(2),td:nth-child(3) {
+    text-align: start;
+}
+.table td i{
+    color: rgb(82, 141, 50); 
+    margin: 10px;
+}
+
+.footer {
+    bottom: 0;
+    left: 0;
+    display:flex; 
+    align-items: center; 
+    justify-content: center;
+    width: 100%;
+    height: 200px;
+    background-color: rgb(82, 141, 50);
+    color: white;
+}
+
+.infoLibro, .infoAutor {
+    position: fixed;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 420px;  
+    color: white;
+    padding: 15px;
+    background-color: rgb(82, 141, 50);
+    border: 2px solid rgb(0, 0, 0);
+    z-index: 600;
+    overflow: hidden;
+}
+.infoLibro.no-imagen{
+    width: 45vw;
+    height: 400px;
+}
+.infoAutor{
+    width: 350px;
+    height: 60vh;
+}
+.info-autor{
+    width: 300px;
+    font-size: 17px;
+    margin-top: 0;
+}
+.mensajeCantidad{
+    font-size: 15px;
+    padding-top: 15px;
+    text-align: center;
+}
+.imagenAutor{
+    width: 250px;
+    height: 320px;
+}
+
+.infoLibro i, .infoAutor i{
+    color: white;
+}
+.detalle-libro, .detalle-autor{
+    display: flex;
+    gap: 25px;
+    align-items: center;
+    justify-content: center;
+}
+.detalle-libro.no-imagen p{
+    justify-content: start;
+}
+.detalle-libro.no-imagen {
+    width: 450px;
+    padding: 10px;
+}
+.detalle-libro.no-imagen > .info-libro{
+    width: 400px;
+}
+.detalle-autor{
+    flex-direction: column;
+}
+.detalle-autor a{
+    text-decoration: underline;
+    color: black;
+}
+.infoLibro > .cerrar-modal, .infoAutor > .cerrar-modal {
+    position: absolute;
+    color: rgb(82, 141, 50);
+    top: 0;
+    right: 10px;
+    cursor: pointer;
+}
+
+.infoLibro > div {
+    margin-top: 20px;
+    text-align: left;
+}
+.infoLibro h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.infoLibro p {
+    text-align: justify;
+    margin-bottom: 10px;
+}
+
+.imagenLibro {
+    width: 250px;
+    height: 370px; 
+    overflow: hidden; 
+}
+
+.imagenLibro img, .imagenAutor img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.info-libro{
+    width: 60%;
+}
+
+
+#mensaje-exito, #mensaje-error {
+    position: fixed;
+    top: 90px; 
+    right: 20px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 5000;
+    min-width: 300px;
+    height: 50px;
+    color: white;
+    border-radius: 10px;
+    text-align: center;
+    background-color: rgba(0, 128, 0, 0.8)
+}
+
+
+#mensaje-exito {
+    background-color: rgb(82, 141, 50);
+}
+
+#mensaje-error {
+    background-color: rgb(199, 30, 58);
+}
+.libros-empty{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: bold;
+}
+.libros-empty p{
+    color: rgb(199, 30, 58);
+    font-size: 20px;
+}
+.borrarLibro{
+  position: fixed;
+  width: 320px;
+  gap: 5px;
+  height: 200px;
+  font-size: 17px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: rgb(82, 141, 50);
+  z-index: 600;
+  background-color: white;  
+}
+.borrarLibro  > div{
+    display: flex;
+    margin-top: 15px;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.borrarLibro a{
+    font-size: 15px;
+    border: 1px solid rgb(82, 141, 50);
+    background-color: rgb(82, 141, 50);
+    margin: 15px;
+    padding: 5px;
+    width: 80px;
+    text-align: center;
+    color: white;
+    transition: .3s;
+}
+.borrarLibro .confirmar:hover{
+    background-color:rgb(0, 132, 255);
+    color: white;
+}
+.borrarLibro .desconfirmar:hover{
+    background-color: red;
+    color: white;
+}
+.visibleModal {
+    display: flex;
+    opacity: 1;
+    top: 50%;
+    left: 50%;
+    transform: scale(1) translate(-50%, -50%);
+}
+#btnModal{
+    font-size: 15px;
+    border-radius: 20px;
+    background-color: rgb(82, 141, 50);
+    color: white;
+    margin-top: 30px;
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 7px;
+    transition: .3s;
+    
+}
+
+/*ESTILOS PARA SECCION REPORTES. */
+
+.reporte-content > .title-pages{
+    color: white;
+}
+
+.btn-descargarLibros{
+    width: max-content;
+    position: absolute;
+    bottom: 30px;
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 10px;
+    background-color:rgb(82, 141, 50);;
+    color:white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .4s;
+}
+.btn-descargarLibros:hover{
+    background-color:rgb(0, 132, 255);
+}
+.btn-descargarLibros.disabled-link{
+    cursor: not-allowed;
+    background-color: rgb(199, 30, 59);;
+    text-decoration: none;
+}
+
+
+/*MEDIA QUERYS*/
+@media (max-width: 1186px) {
+    .card {
+        width: 300px
+    }
+
+    #tablaLibros thead th:nth-child(3),
+    #tablaLibros tbody td:nth-child(3),
+    #tablaAutores thead th:nth-child(3),
+    #tablaAutores tbody td:nth-child(3),
+    #tablaEditoriales thead th:nth-child(3),
+    #tablaEditoriales tbody td:nth-child(3){
+        text-align: center;
+    }
+}
+@media(max-width:820px){
+    .home {
+        width: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        flex-wrap: wrap;
+    }
+    .visibleModal {
+        transform: none;
+        transform: translate(-50%, -50%);
+    }
+    .home-text{
+        border-radius: 20px;
+        width: 80%;
+    }
+    .home-text h3{
+        font-size: 20px;
+    }
+    .home-img{
+        display: none;
+    }
+    .infoLibro{
+        width: 500px;
+        flex-wrap: wrap;
+    }
+    .tablasAutorEditorial .table{
+        width:90vw;
+     }
+     .tabla-libros .table{
+        width: 90vw;
+     }
+     .tablasAutorEditorial .table.editorial{
+        width:90vw;
+    }
+     .tablasAutorEditorial .table tbody td:nth-child(3),
+     .tablasAutorEditorial .table tbody td:nth-child(4),
+     .tablasAutorEditorial .table tbody td:nth-child(5) {
+         width: 30vw;
+     }
+     #tablaLibros,
+     #tablaAutores,
+     #tablaEditoriales {
+         width: 300px;
+     }
+
+    }
+@media (max-width: 710px){
+    #tablaLibros,
+    #tablaAutores,
+    #tablaEditoriales {
+        width: 100%;
+        max-width: 550px;
+    }
+}
+@media (max-width: 670px) {
+  
+    .table tbody tr{   
+        font-size: 14px;
+    }
+    
+    .tabla-libros .table tbody td:nth-child(5){
+        width: 100px;
+    }
+    .navbar-menu {
+        flex-direction: column;
+        color: white;
+        position: fixed;
+        top: 0;
+        right: -370px;
+        bottom: 0;
+        background-color: rgb(82, 141, 50);
+        width: 55%;
+        gap: 25px;
+        padding: .5rem;
+        padding-top: 80px;
+        transition: right .5s;
+        z-index: 200;
+    }
+
+    .navbar-menu li a {
+        color: white;
+    }
+
+    .navbar-item a:before {
+        background-color: rgb(255, 255, 255);
+
+    }
+
+    .visible {
+        right: 0;
+        visibility: visible;
+    }
+
+    .navbar-icon {
+        display: block;
+    }
+
+    .banner {
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .banner h1 {
+        text-align: center;
+    }
+
+    .articulo h2 {
+        font-size: 20px;
+    }
+
+    .card .btnInformes {
+        bottom: 35px;
+    }
+    .form-group.flex-group {
+        flex-wrap: wrap;
+    }
+    #mensaje-exito, #mensaje-error{
+        top: 100px;
+        left: 50%;
+        transform: translate(-50%);
+    }
+    .infoLibro{
+        width: 80vw;
+        height: 90vh;
+    }
+    .imagenLibro{
+        width: 260px;
+        height: 300px;
+        margin-bottom: 5px;
+    } 
+    .info-libro{
+        width: 60vw;
+        font-size: 15px; 
+    }
+    .info-libro h3{
+        font-size: 17px;
+    }  
+    .detalle-libro{
+        gap: 8px;
+        width: 70vw;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+    .detalle-libro.no-imagen p{
+        justify-content: start;
+    }
+   
+    .imagenLibro img{
+        object-fit: cover;
+        object-position: top;
+    }
+    .form-group select{
+        width: 150px;
+    }
+    #btnModal{
+        text-align: center;
+        width: 100px;
+        font-size: 15px;
+     }
+    .table {
+        width: 100%; 
+    }    
+    .tabla-libros{
+        padding-right: 0;
+    }
+    
+    #mensaje-exito, #mensaje-error{
+        width: max-content;
+    }
+    .form-group.flex-group select {
+        width: 210px; 
+    }
+    .home-text{
+        overflow: hidden;
+    }
+    .form-group.flex-group label{
+        display: none;
+    }
+
+@media(max-width:565px){
+    #tablaLibros,
+    #tablaAutores,
+    #tablaEditoriales {
+        width: 100%;
+        max-width: 450px;
+    }
+}
+
+@media(max-width:475px) {
+    html{
+        scroll-padding: 65px;
+    }
+    .navbar-menu{
+        width: 60%;
+    }
+    .menu-title{
+        font-size: 20px;
+    }
+    .articulo h2 {
+        margin-top: 100px;
+        margin-bottom: 20px;
+    }
+    .banner h1 {
+        width: 100%;
+        font-size: 37px;
+    }
+    .banner p {
+        margin-top: 10px;
+        font-size: 15px;
+    }
+    .banner a{
+        font-size: 13px;
+    }
+    #tablaLibros,
+    #tablaAutores,
+    #tablaEditoriales {
+        width: 100%;
+        max-width: 380px;
+    }
+    .libros-empty p{
+        font-size: 17px;
+    }
+    .infoLibro{
+        height: 75vh;
+        font-size: 17px;
+        overflow: scroll;
+        min-height: max-content;
+    }
+    .infoLibro .imagenLibro{
+        width: 230px;
+        height: 280px;
+    }
+    .infoLibro .detalle-libro{
+        overflow: scroll;
+    }
+    .infoLibro h3{
+        width: 240px;
+    }
+    .infoLibro.no-imagen{
+        width: 80vw;
+    }
+    .infoLibro.no-imagen h3{
+        width: 230px;
+    }
+    .infoLibro.no-imagen p{
+        width: 230px;
+    }
+    .infoAutor{
+        height: 60vh;
+    }
+    .card {
+        width: 75vw;
+        height: 40vh;
+    }
+    .card .iconos{
+        margin-top: 30px;
+    }
+    .card h3{
+        font-size: 17px;
+    }
+    .card p{
+        margin-bottom: 25px;
+    }
+    .infoLibro{
+        flex-direction: column;
+    }
+    .infoLibro{
+        height: 60vh;
+    }
+
+    .container-libros,.container-tablas{
+        height: 93vh;
+    }
+    .articulo{
+        padding-bottom: 150px;
+    }
+    .borrarLibro{
+        position: fixed;
+        width: 280px;
+        font-size: 15px;
+        height: 200px;
+    }
+
+}
+
+@media(max-width:380px) {
+    #tablaAutores{
+        width: 100%;
+        max-width: 300px;
+    }
+    #tablaLibros,
+    #tablaEditoriales {
+        width: 100%;
+        max-width: 350px;
+    }
+    #btnModal{
+        font-size: 13px;
+    }
+    .title-pages{
+        font-size: 20px;
+    }
+    .banner-text{
+        width: 60vw;
+    }
+    .banner h1 {
+        font-size: 29px;
+    }
+    .banner p{
+        font-size: 14px;
+    }
+    .cerrar-modal{
+        margin-left: 12px;
+    }
+    .modalAutor-text .cerrar-modal{
+        position:absolute;
+        margin-left: -160px;
+    }
+    .card {
+        width: 75vw;
+        height: 45vh;
+    }
+    .card h3{
+        font-size: 17px;
+    }
+    .card .iconos{
+        margin-top: 30px;
+    }
+    .card p{
+        font-size: 15px;
+        margin-bottom: 30px;
+    }
+    .card .btnInformes {
+        bottom: 30px;
+    }
+    .infoAutor{
+        width: 80vw;
+        height: 68vh;
+    }
+    .infoAutor .imagenAutor{
+        width: 200px;
+        height: 260px;
+    }
+    .info-autor{
+        width: 210px;
+        font-size: 15px;
+    }
+    .infoLibro.no-imagen h3{
+        width: 200px;
+    }
+    .infoLibro.no-imagen p{
+        width: 200px;
+    }
+    .infoLibro.no-imagen{
+        height: 68vh;
+    }
+    .infoLibro{
+        height: 85vh;
+    }
+    .detalle-libro{
+        font-size: 10px;
+        height: 100vh;
+    }
+    .container-cards{
+        gap: 115px;
+    }
+    
+    .btn-descargarLibros{
+        font-size: 13px;
+        bottom: 30px;
+
+    }   
+}
+}
