@@ -4,6 +4,7 @@ C:\Users\Usuario\Desktop\libreria\libreria\src\main\java\com\libreria\spring\con
 C:\Users\Usuario\Desktop\libreria\libreria\src\main\java\com\libreria\spring\controllers\EditorialController.java
 C:\Users\Usuario\Desktop\libreria\libreria\src\main\java\com\libreria\spring\controllers\LibroController.java
 C:\Users\Usuario\Desktop\libreria\libreria\src\main\java\com\libreria\spring\controllers\MainController.java
+C:\Users\Usuario\Desktop\libreria\libreria\src\main\java\com\libreria\spring\controllers\UsuarioController.java
 C:\Users\Usuario\Desktop\libreria\libreria\src\main\java\com\libreria\spring\entidades\Autor.java
 C:\Users\Usuario\Desktop\libreria\libreria\src\main\java\com\libreria\spring\entidades\Editorial.java
 C:\Users\Usuario\Desktop\libreria\libreria\src\main\java\com\libreria\spring\entidades\Libro.java
@@ -19,3 +20,4 @@ C:\Users\Usuario\Desktop\libreria\libreria\src\main\java\com\libreria\spring\ser
 C:\Users\Usuario\Desktop\libreria\libreria\src\main\java\com\libreria\spring\servicios\DataLoadService.java
 C:\Users\Usuario\Desktop\libreria\libreria\src\main\java\com\libreria\spring\servicios\EditorialService.java
 C:\Users\Usuario\Desktop\libreria\libreria\src\main\java\com\libreria\spring\servicios\LibroService.java
+C:\Users\Usuario\Desktop\libreria\libreria\src\main\java\com\libreria\spring\servicios\UsuarioService.java

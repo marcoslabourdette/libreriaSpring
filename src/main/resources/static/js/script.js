@@ -34,12 +34,24 @@ function ajustarEstiloHeader() {
     }
 }
 
+function generarUsuarioId() {
+    fetch('/setUsuarioId', {
+        method: 'GET'
+    })
+    .then(response => response.text())
+    .then(data => {
+        console.log(data);
+    })
+    .catch(error => console.error('Error:', error));
+}
 
 window.addEventListener('load', () => {
+    generarUsuarioId();
     ajustarEstiloHeader();
     ocultarMensajeExito();
     ocultarMensajeError();
- 
+    
+    
     window.addEventListener('scroll', () => {
         ajustarEstiloHeader();
     });

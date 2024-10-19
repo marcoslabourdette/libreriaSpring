@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Comparator;
 import java.util.Date;
@@ -13,9 +14,15 @@ import java.util.Date;
 @AllArgsConstructor
 @Entity
 public class Libro {
+
     @Id
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name="uuid",strategy="uuid2")
+    private String id;
     @Column(nullable=false)
     private String isbn;
+    @Column(nullable = false)
+    private String usuarioId;
     @Column(nullable=false)
     private String titulo;
     @Column(nullable=false)

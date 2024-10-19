@@ -8,6 +8,8 @@ import java.io.IOException;
 import com.libreria.spring.reportes.EditorialExporterPDF;
 import com.libreria.spring.excepciones.MyException;
 import com.libreria.spring.servicios.EditorialService;
+import com.libreria.spring.servicios.UsuarioService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -30,11 +32,15 @@ public class EditorialController {
     private EditorialService es;
     @Autowired
     private EditorialExporterPDF EditorialExporterPDF;
+    @Autowired
+    private UsuarioService usuarioService;
+
 
     @PostMapping("/registrar")
-    public String registrarEditorial(@RequestParam String nombre, @RequestParam String paisOrigen, RedirectAttributes redirectAttributes) {
+    public String registrarEditorial(HttpServletRequest request, @RequestParam String nombre, @RequestParam String paisOrigen, RedirectAttributes redirectAttributes) {
         try {
-            es.crearEditorial(nombre, paisOrigen);
+            String usuarioId = usuarioService.obtenerUsuarioId(request);
+            es.crearEditorial(usuarioId,nombre, paisOrigen);
             redirectAttributes.addFlashAttribute("exito", "¡Se registró la editorial correctamente! 😎");
         } catch (MyException e) {
             redirectAttributes.addFlashAttribute("error", e.getMessage() + " 😬");
@@ -54,10 +60,11 @@ public class EditorialController {
     }
 
     @GetMapping("/reportes")
-    public ResponseEntity<byte[]> descargarReporte(RedirectAttributes redirectAttributes) {
+    public ResponseEntity<byte[]> descargarReporte(HttpServletRequest request,RedirectAttributes redirectAttributes) {
         String nombreArchivo = "Editoriales[LibrarySB].pdf";
         try {
-            EditorialExporterPDF.exportar(es.listarEditoriales(), nombreArchivo);
+            String usuarioId = usuarioService.obtenerUsuarioId(request);
+            EditorialExporterPDF.exportar(es.listarEditoriales(usuarioId), nombreArchivo);
             FileInputStream fis = new FileInputStream(nombreArchivo);
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
             FileCopyUtils.copy(fis, bos);

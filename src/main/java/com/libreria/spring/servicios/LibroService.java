@@ -26,9 +26,9 @@ public class LibroService {
     private AutorRepository autorRepository;
 
     @Transactional
-    public void crearLibro(String isbn, String titulo,
+    public void crearLibro(String usuarioId, String isbn, String titulo,
                            String descripcion, String imagen, String autorID, String editorialID) throws MyException {
-        validar(isbn, titulo, descripcion, imagen, autorID, editorialID);
+        validar(usuarioId,isbn, titulo, descripcion, imagen, autorID, editorialID);
         Optional<Editorial> editorialEncontrada = editorialRepository.findById(editorialID);
         Optional<Autor> autorEncontrado = autorRepository.findById(autorID);
         Libro libro = new Libro();
@@ -38,6 +38,7 @@ public class LibroService {
         if (autorEncontrado.isPresent()) {
             libro.setAutor(autorEncontrado.get());
         }
+        libro.setUsuarioId(usuarioId);
         libro.setIsbn(isbn);
         libro.setTitulo(titulo);
         libro.setDescripcion(descripcion);
@@ -46,15 +47,21 @@ public class LibroService {
         libroRepository.save(libro);
     }
 
-    public List<Libro> listarLibros() {
-        return libroRepository.findAll();
+    public List<Libro> listarLibros(String usuarioId) {
+        return libroRepository.findLibrosByUsuarioId(usuarioId);
     }
 
-    public void validar(String isbn, String titulo, String descripcion, String imagen, String autorID, String editorialID) throws MyException {
+    public void validar(String usuarioId,String isbn, String titulo, String descripcion, String imagen, String autorID, String editorialID) throws MyException {
+        boolean nombreRepetido = false;
+        List<Libro> libros = libroRepository.findLibrosByUsuarioId(usuarioId);
         if (isbn == null || !isbn.matches("\\d+")) {
             throw new MyException("El ISBN debe contener solo números");
-        } else if (!libroRepository.findById(isbn).isEmpty()) {
-            throw new MyException("El ISBN ingresado ya está registrado");
+        }
+        for(Libro aux : libros){
+            if(aux.getIsbn().equalsIgnoreCase(isbn)){
+                nombreRepetido = true;
+                throw new MyException("El ISBN ingresado ya está registrado");
+            }
         }
         if (!imagen.equals("")) {
             if (!imagen.matches("^(ftp|http|https)://[^\\s/$.?#].[^\\s]*$")) {

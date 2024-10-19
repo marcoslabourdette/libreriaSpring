@@ -13,15 +13,16 @@ public class EditorialService {
     private static final String EDITORIAL_PATTERN = "^[A-Za-z0-9&.'\\s-]+$";
     @Autowired
     private EditorialRepository er;
-    public void crearEditorial(String nombre, String paisOrigen) throws MyException {
-        validar(nombre,paisOrigen);
+    public void crearEditorial(String usuarioId, String nombre, String paisOrigen) throws MyException {
+        validar(usuarioId,nombre,paisOrigen);
         Editorial editorial = new Editorial();
         editorial.setNombre(nombre);
         editorial.setPaisOrigen(paisOrigen);
         editorial.setAlta(true);
+        editorial.setUsuarioId(usuarioId);
         er.save(editorial);
     }
-    public void validar(String nombre, String paisOrigen) throws MyException{
+    public void validar(String usuarioId, String nombre, String paisOrigen) throws MyException{
         if(!nombre.matches(EDITORIAL_PATTERN)){
             throw new MyException("Nombre de editorial inválido. ");
         }
@@ -29,7 +30,7 @@ public class EditorialService {
             throw new MyException("País de origen inválido.");
         }
         boolean nombreRepetido = false;
-        List<Editorial> editoriales = er.findAll();
+        List<Editorial> editoriales = er.findEditorialesByUsuarioId(usuarioId);
         for(Editorial aux : editoriales){
             if(aux.getNombre().equalsIgnoreCase(nombre)){
                 nombreRepetido = true;
@@ -41,7 +42,8 @@ public class EditorialService {
     public void eliminarEditorial(String id){
         er.deleteById(id);
     }
-    public List<Editorial> listarEditoriales(){
-        return er.findAll();
+
+    public List<Editorial> listarEditoriales(String usuarioId){
+        return er.findEditorialesByUsuarioId(usuarioId);
     }
 }

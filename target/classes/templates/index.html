@@ -82,7 +82,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         </article>
         <section id="libros" class="container-libros">
             <h2 class="title-pages">Administrá tus libros</h2>
-            <div class="tablasAutorEditorial">
+        <div class="tablasAutorEditorial">
                 <div th:if="${libros != null and not #lists.isEmpty(libros)}" class="tabla-libros" id="librosTable">
                     <table id="tablaLibros" class="table">
                         <thead>
@@ -172,7 +172,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <img src="/images/formimage.png" alt="imagen-formulario">
                 </aside>
             </div>
-            </div>
+        </div>
         </section>
         <section id="autores" class="container-tablas">
             <h2 class="title-pages">Administrá tus autores</h2>
@@ -358,8 +358,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <p>© Copyright 2024 | Marcos Labourdette</p>
     </footer>
     <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
-    <script src="/js/tablas.js"></script>
-    <script src="/js/script.js"></script>
+    <script src="/js/tablas.js?v=1.0"></script>
+    <script src="/js/script.js?v=1.0"></script>
 </body>
 
 </html>

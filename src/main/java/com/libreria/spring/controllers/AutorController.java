@@ -10,6 +10,8 @@ import com.libreria.spring.excepciones.MyException;
 import com.libreria.spring.reportes.AutorExporterPDF;
 import com.libreria.spring.servicios.AutorService;
 import com.libreria.spring.servicios.DataLoadService;
+import com.libreria.spring.servicios.UsuarioService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -35,11 +37,13 @@ public class AutorController {
     private DataLoadService dataService;
     @Autowired
     private AutorExporterPDF AutorPdfExporter;
-
+    @Autowired
+    private UsuarioService usuarioService;
     @PostMapping("/registrar")
-    public String registrarAutor(@RequestParam String nombre, @RequestParam String nacionalidad, @RequestParam String nacimiento, @RequestParam String bio, @RequestParam String imagenUrl, RedirectAttributes redirectAttributes) {
+    public String registrarAutor(HttpServletRequest request, @RequestParam String nombre, @RequestParam String nacionalidad, @RequestParam String nacimiento, @RequestParam String bio, @RequestParam String imagenUrl, RedirectAttributes redirectAttributes) {
         try {
-            as.crearAutor(nombre.trim(), nacionalidad.trim(), nacimiento.trim(), bio.trim(), imagenUrl.trim());
+            String usuarioId = usuarioService.obtenerUsuarioId(request);
+            as.crearAutor(usuarioId,nombre.trim(), nacionalidad.trim(), nacimiento.trim(), bio.trim(), imagenUrl.trim());
             redirectAttributes.addFlashAttribute("exito", "¡El autor se registró correctamente! 😎");
         } catch (MyException e) {
             redirectAttributes.addFlashAttribute("error", e.getMessage() + " 😬");
@@ -50,14 +54,14 @@ public class AutorController {
     }
 
     @PostMapping("/modificar/{id}")
-    public String modificar(@PathVariable String id, @RequestParam String nombre, @RequestParam String nacionalidad, @RequestParam String nacimiento, @RequestParam String imagenUrl, @RequestParam String bio, ModelMap modelo, RedirectAttributes redirectAttributes) throws MyException {
+    public String modificar(HttpServletRequest request,@PathVariable String id, @RequestParam String nombre, @RequestParam String nacionalidad, @RequestParam String nacimiento, @RequestParam String imagenUrl, @RequestParam String bio, ModelMap modelo, RedirectAttributes redirectAttributes) throws MyException {
         try {
             as.modificarAutor(id, nombre.trim(), nacionalidad.trim(), nacimiento.trim(), imagenUrl.trim(), bio.trim());
             redirectAttributes.addFlashAttribute("exito", "¡El autor se modificó correctamente! 😎");
         } catch (MyException e) {
             redirectAttributes.addFlashAttribute("error", e.getMessage() + " 😬");
         }
-        dataService.cargarDatos(modelo);
+        dataService.cargarDatos(request,modelo);
         return "redirect:/#autores";
     }
 
@@ -73,11 +77,12 @@ public class AutorController {
     }
 
     @GetMapping("/reportes")
-    public ResponseEntity<byte[]> descargarReporte(RedirectAttributes redirectAttributes) {
+    public ResponseEntity<byte[]> descargarReporte(HttpServletRequest request,RedirectAttributes redirectAttributes) {
         String nombreArchivo = "Autores[LibrarySB].pdf";
 
         try {
-            AutorPdfExporter.exportar(as.listarAutores(), nombreArchivo);
+            String usuarioId = usuarioService.obtenerUsuarioId(request);
+            AutorPdfExporter.exportar(as.listarAutores(usuarioId), nombreArchivo);
             FileInputStream fis = new FileInputStream(nombreArchivo);
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
             FileCopyUtils.copy(fis, bos);

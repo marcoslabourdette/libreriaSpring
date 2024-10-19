@@ -22,6 +22,8 @@ public class Autor {
     @GenericGenerator(name="uuid",strategy="uuid2")
     private String id;
     @Column(nullable = false)
+    private String usuarioId;
+    @Column(nullable = false)
     private String nombre;
     @Column(nullable=false)
     private String nacionalidad;

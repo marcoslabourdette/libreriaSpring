@@ -18,16 +18,15 @@ public class AutorService {
     @Autowired
     private AutorRepository ar;
 
-    public List<Autor> listarAutores() {
-        return ar.findAll();
+    public List<Autor> listarAutores(String usuarioId) {
+
+        return ar.findAutoresByUsuarioId(usuarioId);
     }
     @Transactional
-    public void crearAutor(String nombre, String nacionalidad, String nacimiento, String bio, String imagenUrl) throws MyException {
-        validar(nombre, nacionalidad,imagenUrl, bio);
-        //Convierto String de fecha a Date
+    public void crearAutor(String usuarioId, String nombre, String nacionalidad, String nacimiento, String bio, String imagenUrl) throws MyException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate fechaNacimiento = LocalDate.parse(nacimiento, formatter);
-        // Cargo los atributos.
+        validar(fechaNacimiento,nombre, nacionalidad,imagenUrl, bio);
         Autor autor = new Autor();
         autor.setNombre(nombre);
         autor.setNacionalidad(nacionalidad);
@@ -35,13 +34,19 @@ public class AutorService {
         autor.setBio(bio);
         autor.setImagenUrl(imagenUrl);
         autor.setAlta(true);
+        autor.setUsuarioId(usuarioId);
         ar.save(autor);
     }
 
-    public void validar(String nombre, String nacionalidad, String imagenUrl, String bio) throws MyException {
+    public void validar(LocalDate fechaNacimiento, String nombre, String nacionalidad, String imagenUrl, String bio) throws MyException {
+        LocalDate fechaActual = LocalDate.now();
+        if (fechaNacimiento.isAfter(fechaActual)) {
+            throw new MyException("La fecha de nacimiento no puede ser mayor que la fecha actual.");
+        }
         if (nombre == null || !nombre.matches("^[a-zA-ZÀ-ÿ\\s']*$")) {
             throw new MyException("El nombre no puede contener números, o carácteres especiales");
         }
+
         else if (nacionalidad == null || nacionalidad.matches("\\d+")) {
             throw new MyException("La nacionalidad no puede contener números");
         } else if (bio == null) {
@@ -57,10 +62,10 @@ public class AutorService {
 
     @Transactional
     public void modificarAutor(String id, String nombre, String nacionalidad, String nacimiento, String imagenUrl, String bio) throws MyException {
-        validar(nombre, nacionalidad,imagenUrl, bio);
-        Optional<Autor> optionalAutor = ar.findById(id);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate fechaNacimiento = LocalDate.parse(nacimiento, formatter);
+        validar(fechaNacimiento,nombre, nacionalidad,imagenUrl, bio);
+        Optional<Autor> optionalAutor = ar.findById(id);
         if (optionalAutor.isPresent()) {
             Autor autor = optionalAutor.get();
             autor.setNombre(nombre);
