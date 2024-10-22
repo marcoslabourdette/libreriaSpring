@@ -775,6 +775,18 @@ i{
 
 
 /*MEDIA QUERYS*/
+@media (max-height: 700px) {
+    .articulo h2{
+      margin-bottom: 40px;
+    }
+    .banner-text h1{
+        margin-top: 40px;
+    }
+    .infoAutor{
+        height: 85vh;
+    }
+   
+  }
 @media (max-width: 1186px) {
     .card {
         width: 300px
